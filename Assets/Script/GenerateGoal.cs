@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class GenerateGoal : MonoBehaviour
 {
+    private readonly Vector3 randomSpawnPosition;
     public GameObject[] myObjects;
+    public Transform[] spawnPoints;
 
     // Start is called before the first frame update
     void Start()

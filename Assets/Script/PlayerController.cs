@@ -4,33 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float horizontalInput;
-    public float forwardInput;
-    public float speed;
-    public float turnspeed;
-    public Rigidbody rb;
-    public float jumpheight;
-    public LayerMask GroundMask;
-    public bool isGrounded;
-    public Transform GroundCheck;
-    public float GroundDistance;
+    private float horizontalInput;
+    private float forwardInput;
+    [SerializeField] float turnSpeed;
+    [SerializeField] float speed;
 
-    public Animator _playerAnim;
+    private Animator _playerAnim;
+
+    private Rigidbody _playerRb;
+    public Vector3 force;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = 10;
-        turnspeed = 3;
-        jumpheight = 6;
-        GroundDistance = 0.2f;
-
         _playerAnim = GetComponent<Animator>();
-
-
-        //for jump
-        rb = GetComponent<Rigidbody>();
+        _playerRb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -39,31 +28,25 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
 
-        //movement
+        transform.Rotate(Vector3.up * horizontalInput * Time.deltaTime * turnSpeed);
         transform.Translate(Vector3.forward * forwardInput * Time.deltaTime * speed);
-        transform.Rotate(Vector3.up * horizontalInput * Time.deltaTime * turnspeed);
 
-        //Jump
-        if(Input.GetButton("Jump") && isGrounded)
+        _playerAnim.SetFloat("Run", forwardInput);
+
+        if (forwardInput != 0 || horizontalInput != 0)
         {
-            rb.velocity = new Vector3(rb.velocity.x, jumpheight, rb.velocity.z);
-        }
-            else
-        {
-
-        }
-
-        //Groundcheck
-        isGrounded = Physics.CheckSphere(GroundCheck.position, GroundDistance, GroundMask);
-
-        //Animation Run
-        if(forwardInput > 0 || forwardInput < 0)
-        {
-            _playerAnim.SetBool("IsRunning", true);
+            _playerAnim.SetBool("Walk", true);
         }
         else
         {
-            _playerAnim.SetBool("IsRunning", false);
+            _playerAnim.SetBool("Walk", false);
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _playerRb.AddForce(force, ForceMode.Impulse);
+            _playerAnim.SetTrigger("Jump");
         }
     }
 }
