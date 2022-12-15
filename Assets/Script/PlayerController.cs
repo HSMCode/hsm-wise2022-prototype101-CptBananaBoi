@@ -12,7 +12,16 @@ public class PlayerController : MonoBehaviour
     private Animator _playerAnim;
 
     private Rigidbody _playerRb;
-    public Vector3 force;
+    public float force;
+    public float gravityModifyer = 1f;
+
+    public bool inOnGround;
+    public bool isRunning;
+    public bool isJumping;
+    public bool isWalking;
+    public bool isLanding;
+
+
 
 
     // Start is called before the first frame update
@@ -47,6 +56,15 @@ public class PlayerController : MonoBehaviour
         {
             _playerRb.AddForce(force, ForceMode.Impulse);
             _playerAnim.SetTrigger("Jump");
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (isJumping)
+        {
+            jumpTimer += Time.deltaTime;
+            if(Input)
         }
     }
 }
