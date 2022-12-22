@@ -619,7 +619,7 @@ GameObject:
   - component: {fileID: 1812064115}
   m_Layer: 0
   m_Name: floor
-  m_TagString: Untagged
+  m_TagString: floor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -780,7 +780,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036390211}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1.97, z: -7.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -799,6 +799,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 250e9439efb5e8b42a6d04228279ac05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 919132148644758762}
+  target: {fileID: 919132148644758767}
+  offset: {x: 0, y: 1.97, z: -7.34}
 --- !u!1 &919132148644758762 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8744485752446194659, guid: ebc7edebb6387a54b904178130d4b85a, type: 3}
@@ -854,6 +857,11 @@ CapsuleCollider:
   m_Height: 3.5
   m_Direction: 1
   m_Center: {x: 0, y: 1.8, z: 0}
+--- !u!4 &919132148644758767 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8219482576079112537, guid: ebc7edebb6387a54b904178130d4b85a, type: 3}
+  m_PrefabInstance: {fileID: 8474594344502417161}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8474594344502417161
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -906,6 +914,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8474594342937671882, guid: ebc7edebb6387a54b904178130d4b85a, type: 3}
+      propertyPath: force
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474594342937671882, guid: ebc7edebb6387a54b904178130d4b85a, type: 3}
       propertyPath: speed
       value: 15
       objectReference: {fileID: 0}
@@ -920,6 +932,10 @@ PrefabInstance:
     - target: {fileID: 8474594342937671882, guid: ebc7edebb6387a54b904178130d4b85a, type: 3}
       propertyPath: GroundCheck
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8474594342937671882, guid: ebc7edebb6387a54b904178130d4b85a, type: 3}
+      propertyPath: gravityModifier
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8744485752446194659, guid: ebc7edebb6387a54b904178130d4b85a, type: 3}
       propertyPath: m_Name
